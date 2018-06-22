@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi Customer!</h1>
+    <div class="order-summary jumbotron">
+      <h4>Below is your order summary. Thanks for supporting small business!</h4>
+    </div>
+   <div>
+      <h5>Your total is: <%= @order_total %></h5>
+      <h5>These are the products you ordered: </h5>
+      <ul>
+        <% @order.line_items.each do |item| %>
+          <li><%= item.product.name %></li>
+        <% end %>
+      </ul>
+   </div>
+
+  </body>
+</html>

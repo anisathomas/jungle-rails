@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_total = @order.total
   end
 
   def create
@@ -10,6 +11,7 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
+      OrderMailer.order_email(current_user, @order)
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
